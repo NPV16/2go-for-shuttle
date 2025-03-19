@@ -373,7 +373,7 @@ async fn generate_links() {
         "net": "ws",
         "type": "none",
         "host": argodomain,
-        "path": "/vmess-argo?ed=2048",
+        "path": "/",
         "tls": "tls",
         "sni": argodomain,
         "alpn": ""
