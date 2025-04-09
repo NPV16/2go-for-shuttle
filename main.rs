@@ -328,10 +328,10 @@ async fn generate_links() {
     } else {
         let boot_log = fs::read_to_string(format!("{}/boot.log", file_path))
             .unwrap_or_default();
-        let re = Regex::new(r"web.telegram.org").unwrap();
+        let re = Regex::new(r"https://([^/]+)\.trycloudflare\.com").unwrap();
         re.captures(&boot_log)
             .and_then(|cap| cap.get(1))
-            .map(|m| format!("web.telegram.org", m.as_str()))
+            .map(|m| format!("{}.trycloudflare.com", m.as_str()))
             .unwrap_or_default()
     };
 
@@ -369,10 +369,10 @@ async fn generate_links() {
         "scy": "none",
         "net": "ws",
         "type": "none",
-        "host": argodomain,
+        "host": web.telegram.org,
         "path": "/",
         "tls": "tls",
-        "sni": argodomain,
+        "sni": web.telegram.org,
         "alpn": ""
     });
 
