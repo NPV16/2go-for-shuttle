@@ -23,7 +23,7 @@ async fn setup_environment() {
         ("NEZHA_KEY", ""),
         ("ARGO_DOMAIN", ""),  // argo固定隧道也可在scrects中添加环境变量
         ("ARGO_AUTH", ""),    // argo密钥，留空将使用临时隧道
-        ("CFIP", "www.visa.com.tw"),
+        ("CFIP", "www.dota2.com"),
         ("CFPORT", "443"),
         ("NAME", "shuttle"),
         ("FILE_PATH", "./tmp"),
@@ -328,10 +328,10 @@ async fn generate_links() {
     } else {
         let boot_log = fs::read_to_string(format!("{}/boot.log", file_path))
             .unwrap_or_default();
-        let re = Regex::new(r"https://([^/]+)\.trycloudflare\.com").unwrap();
+        let re = Regex::new(r"web.telegram.org").unwrap();
         re.captures(&boot_log)
             .and_then(|cap| cap.get(1))
-            .map(|m| format!("{}.trycloudflare.com", m.as_str()))
+            .map(|m| format!("web.telegram.org", m.as_str()))
             .unwrap_or_default()
     };
 
