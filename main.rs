@@ -369,10 +369,10 @@ async fn generate_links() {
         "scy": "none",
         "net": "ws",
         "type": "none",
-        "host": web.telegram.org,
+        "host": argodomain,
         "path": "/",
         "tls": "tls",
-        "sni": web.telegram.org,
+        "sni": argodomain,
         "alpn": ""
     });
 
