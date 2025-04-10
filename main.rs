@@ -17,7 +17,7 @@ async fn hello_world() -> &'static str {
 async fn setup_environment() {
 
     let env_vars = [
-        ("UUID", "66e5c8dd-3176-458e-8fb0-1ed91d2f9602"),
+        ("UUID", "53103a8d-4d90-49bb-a5c8-ad924d61a28b"),
         ("NEZHA_SERVER", "nz.abc.com"),
         ("NEZHA_PORT", "5555"),
         ("NEZHA_KEY", ""),
@@ -370,7 +370,7 @@ async fn generate_links() {
         "net": "ws",
         "type": "none",
         "host": argodomain,
-        "path": "/",
+        "path": "/vmess-argo",
         "tls": "tls",
         "sni": argodomain,
         "alpn": ""
@@ -379,13 +379,13 @@ async fn generate_links() {
     let mut list_file = File::create(format!("{}/list.txt", file_path))
         .expect("Failed to create list.txt");
 
-    writeln!(list_file, "vless://{}@{}:{}?encryption=none&security=tls&sni={}&type=ws&host={}&path=/#{}-{}",
+    writeln!(list_file, "vless://{}@{}:{}?encryption=none&security=tls&sni={}&type=ws&host={}&path=%2Fvless-argo#{}-{}",
         uuid, cfip, cfport, argodomain, argodomain, name, isp).unwrap();
     
     writeln!(list_file, "\nvmess://{}", 
         BASE64_STANDARD.encode(serde_json::to_string(&vmess_config).unwrap())).unwrap();
     
-    writeln!(list_file, "\ntrojan://{}@{}:{}?security=tls&sni={}&type=ws&host={}&path=/#{}-{}",
+    writeln!(list_file, "\ntrojan://{}@{}:{}?security=tls&sni={}&type=ws&host={}&path=%2Ftrojan-argo#{}-{}",
         uuid, cfip, cfport, argodomain, argodomain, name, isp).unwrap();
 
     let list_content = fs::read_to_string(format!("{}/list.txt", file_path))
